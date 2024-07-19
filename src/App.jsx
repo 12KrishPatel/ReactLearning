@@ -4,8 +4,10 @@ import MovieCard from './MovieCard'
 
 import './App.css'
 import SearchIcon from './search.svg'
+const imdbID = 'tt0145487'
 
 const API_URL = 'http://www.omdbapi.com?apikey=69b70cc1'
+const RATING_URL = `https://movies-ratings2.p.rapidapi.com/ratings?id=${imdbID}]`
 
 const App = () => {
     const [movies, setMovies] = useState([]);
@@ -17,6 +19,7 @@ const App = () => {
 
         setMovies(data.Search);
     }
+
 
     useEffect(() => {
         searchMovies('')
