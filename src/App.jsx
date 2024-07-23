@@ -16,13 +16,21 @@ const App = () => {
     const searchMovies = async (title) => {
         const response = await fetch(`${API_URL}&s=${title}`);
         const data = await response.json();
-
         setMovies(data.Search);
+    }
+
+    const [ratings, setRatings] = useState([]);
+
+    const searchRatings = async (ratings) => {
+        const response = await fetch(`${RATING_URL}&s=${ratings}`);
+        const data = await response.json();
+        setRatings(data.Search);
     }
 
 
     useEffect(() => {
         searchMovies('')
+        searchRatings('')
     }, []);
 
     return (
@@ -38,7 +46,10 @@ const App = () => {
                 <img
                     src={SearchIcon}
                     alt="search"
-                    onClick={() => searchMovies(searchTerm)}
+                    onClick={() => {
+                        searchMovies(searchTerm)
+                        searchRatings(searchTerm)
+                    }}
                 />
             </div>
             {movies?.length > 0
