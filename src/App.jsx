@@ -4,11 +4,10 @@ import MovieCard from './MovieCard'
 
 import './App.css'
 import SearchIcon from './search.svg'
-const imdbID = 'tt0145487'
 
 //const API_URL = 'http://www.omdbapi.com?apikey=69b70cc1'
 //const RATING_URL = `https://movies-ratings2.p.rapidapi.com/ratings?id=${imdbID}]`
-const IMDB_URL = `https://imdb-movies-web-series-etc-search.p.rapidapi.com/${searchTerm}+.json`
+//const IMDB_URL = 'https://imdb-movies-web-series-etc-search.p.rapidapi.com/'
 const RAPIDAPI_HOST = 'imdb-movies-web-series-etc-search.p.rapidapi.com';
 const RAPIDAPI_KEY = '3fc9f8e71fmsh32bef10f957d078p1809d4jsn79aa39f6d468';
 
@@ -31,22 +30,23 @@ const App = () => {
     // }
 
     const searchMovies = async (title) => {
-        const response = await fetch(`${IMDB_URL}?s=${title}`, {
+        const IMDB_URL = `https://${RAPIDAPI_HOST}/${title}.json`
+
+        const response = await fetch(IMDB_URL, {
             method: 'GET',
             headers: {
-                'x-rapidapi_host': RAPIDAPI_HOST,
-                'x-rapidapi_key': RAPIDAPI_KEY
+                'x-rapidapi-host': RAPIDAPI_HOST,
+                'x-rapidapi-key': RAPIDAPI_KEY
             }
         });
         const data = await response.json();
-        setMovies(data.Search);
+        setMovies(data.d);
     }
 
 
 
     useEffect(() => {
         searchMovies('')
-        searchRatings('')
     }, []);
 
     return (
@@ -55,7 +55,7 @@ const App = () => {
 
             <div className="search">
                 <input
-                    placeholder="Search for movies"
+                    placeholder="Search for movies (Please add .json to the end of your search!)"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -71,7 +71,7 @@ const App = () => {
                 ? (
                     <div className="container">
                         {movies.map((movie) => (
-                            <MovieCard movie={movie} />
+                            <MovieCard key={movie.id} movie={movie} />
                         ))}
                     </div>
                 ) : (
