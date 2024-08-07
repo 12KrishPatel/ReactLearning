@@ -141,14 +141,37 @@ h1 {
 }
 
 .hover-text {
-    display: none;
+    position: relative;
+    display: inline-block;
+    text-align: right;
+}
+
+.hover-text .hover-content {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
     position: absolute;
-    bottom: 10px;
-    left: 10px;
-    background-color: rgba(0, 0, 0, 0.1);
-    color: gold;
-    padding: 5px;
-    border-radius: 3px;
+    z-index: 1;
+    bottom: 125%;
+    left: 15%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.hover-text:hover .hover-content {
+    visibility: visible;
+    opacity: 1;
+}
+
+.hover-text-large {
+    font-size: 5em;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .movie div:nth-of-type(2) {
