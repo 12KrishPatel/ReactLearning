@@ -38,7 +38,7 @@ const App = () => {
 
             <div className="search">
                 <input
-                    placeholder="Search for movies (Please add .json to the end of your search!)"
+                    placeholder="Search for movies (Please keep your search to one word!)"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />

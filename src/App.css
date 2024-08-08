@@ -144,6 +144,7 @@ h1 {
     position: relative;
     display: inline-block;
     text-align: right;
+    margin-right: 15px;
 }
 
 .hover-text .hover-content {
@@ -156,7 +157,7 @@ h1 {
     padding: 5px 0;
     position: absolute;
     z-index: 1;
-    bottom: 125%;
+    bottom: 100%;
     left: 15%;
     margin-left: -60px;
     opacity: 0;
